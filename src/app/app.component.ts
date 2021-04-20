@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MensajeroService } from './mensajero.service';
+import { AlertadorService} from './alertador.service'
 
 
 @Component({
@@ -16,6 +18,8 @@ export class AppComponent {
   textoTarea: string;
   botonPulsado: boolean = false;
   tareas: string[] = [];
+  constructor(private AlertadorService : AlertadorService) { }
+
 
   mostrarTexto() {
     this.textoBoton = `Has pulsado el boton y la variable contiene ${this.textoInput}`;
@@ -26,7 +30,8 @@ export class AppComponent {
 
   agregarLista(){
       this.tareas.push(this.textoTarea);
-  }
+      this.AlertadorService.mensajero(this.textoTarea);
+    }
 
 }
 
